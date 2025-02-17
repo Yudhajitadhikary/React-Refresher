@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup,signInWithRedirect,createUserWithEmailAndPassword,signInWithEmailAndPassword,signOut,onAuthStateChanged } from 'firebase/auth';
 import { getFirestore,doc,getDoc,setDoc,collection,writeBatch ,query,getDocs} from 'firebase/firestore';
