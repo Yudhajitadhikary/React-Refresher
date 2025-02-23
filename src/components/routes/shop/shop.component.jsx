@@ -1,3 +1,4 @@
+/* eslint-disable */
 // import { useContext } from "react";
 // import { CategoriesContext } from "../../../contexts/products.context";
 // import CategoryPreview from "../../category-preview/category-preview.component";
@@ -16,7 +17,7 @@ const Shop =()=>{
             dispatch(fetchCategoriesStart());
             // dispatch(fetchCategoriesAsync());
             
-            }, []);
+            },[]);
     // const {categories}=useContext(CategoriesContext);
     // console.log(categories);              
 return (
