@@ -1,11 +1,14 @@
 import { useContext } from "react";
-import { CategoriesContext } from "../../../contexts/products.context";
+import { selectCategories } from "../../../store/categories/category.selector";
+// import { CategoriesContext } from "../../../contexts/products.context";
 import CategoryPreview from "../../category-preview/category-preview.component";
 // import ProductCard from "../../product-card/product-card.component";
 import './categories-preview.styles.scss';
+import { useSelector } from "react-redux";
 const CategoriesPreview =()=>{ 
-    const {categories}=useContext(CategoriesContext);
-    console.log(categories);              
+    // const {categories}=useContext(CategoriesContext);
+    const categories=useSelector(selectCategories);
+    // console.log(categories);              
 return (
     // <>
     // {
