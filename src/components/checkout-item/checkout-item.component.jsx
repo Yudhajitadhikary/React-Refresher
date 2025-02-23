@@ -1,8 +1,8 @@
 import './checkout-item.styles.scss';
-import { useContext } from 'react';
-import { CartContext } from '../../contexts/cart.context';
+// import { useContext } from 'react';
+// import { CartContext } from '../../contexts/cart.context';
 import { useSelector,useDispatch } from 'react-redux';
-import { selectCartItems, selectCartTotal } from '../../store/cart/cart.selector';
+import { selectCartItems } from '../../store/cart/cart.selector';
 import { clearItemFromCart,addItemToCart,removeItemToCart } from '../../store/cart/cart.action';
 const CheckoutItem = ({ cartItem }) => {        
 
