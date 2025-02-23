@@ -1,4 +1,4 @@
-import { useContext } from "react";
+// import { useContext } from "react";
 import { selectCategories } from "../../../store/categories/category.selector";
 // import { CategoriesContext } from "../../../contexts/products.context";
 import CategoryPreview from "../../category-preview/category-preview.component";

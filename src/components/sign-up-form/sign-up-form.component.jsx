@@ -5,7 +5,7 @@ import './sign-up.styles.scss';
 import Button from '../button/button.component';
 import { signUpStart } from '../../store/user/user.action';
 // import { UserContext } from '../../contexts/user.context';
-import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
+// import { createAuthUserWithEmailAndPassword,createUserDocumentFromAuth } from '../../utils/firebase/firebase.utils';
 const defaultFormFeilds={
     displayName: '',    
     email: '',                              
