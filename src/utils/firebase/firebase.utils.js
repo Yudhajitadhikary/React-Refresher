@@ -43,21 +43,35 @@ const firebaseConfig = {
     return categoryMap;
   }
   export const batch=writeBatch(db);
-export const createUserDocumentFromAuth=async(userAuth,additionalInformation)=>{
-if(!userAuth) return;
-const userDocRef=doc(db,'users',userAuth.uid);  
-const userSnapshot=await getDoc(userDocRef);
-if(!userSnapshot.exists()){
-    const {displayName,email}=userAuth;
-    const createdAt=new Date();
-    try{
-        await setDoc(userDocRef,{displayName,email,createdAt,...additionalInformation});
-    }catch(error){
-        console.log('error creating user',error.message);
+  export const createUserDocumentFromAuth = async (
+    userAuth,
+    additionalInformation = {}
+  ) => {
+    if (!userAuth) return;
+  
+    const userDocRef = doc(db, 'users', userAuth.uid);
+  
+    const userSnapshot = await getDoc(userDocRef);
+  
+    if (!userSnapshot.exists()) {
+      const { displayName, email } = userAuth;
+      const createdAt = new Date();
+  
+      try {
+        await setDoc(userDocRef, {
+          displayName,
+          email,
+          createdAt,
+          ...additionalInformation,
+        });
+      } catch (error) {
+        console.log('error creating the user', error.message);
+      }
     }
-}
-return userDocRef;
-}
+  
+    return userSnapshot;
+  };
+  
 export const signInAuthUserWithEmailAndPassword=async(email,password)=>{
     if(!email||!password) return;
     return await signInWithEmailAndPassword(auth,email,password);
@@ -70,4 +84,12 @@ export const signOutUser=async()=> await signOut(auth);
 
 export const onAuthStateChangedListener=(callback)=>{
     onAuthStateChanged(auth,callback);
+}
+export const getCurrentUser=()=>{
+    return new Promise((resolve,reject)=>{
+        const unsubscribe=onAuthStateChanged(auth,(user)=>{
+            unsubscribe();
+            resolve(user);
+        },reject)
+    })
 }

@@ -1,15 +1,18 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { googleSignInStart,emailSignInStart } from '../../store/user/user.action';
 import FormInput from '../form-input/form-input.component';
 import './sign-in.styles.scss';
 import Button,{BUTTON_TYPES_CLASSES} from '../button/button.component';
 // import { UserContext } from '../../contexts/user.context';    
-import { signInWithGooglePopup,signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
+import { signInWithGooglePopup,signInAuthUserWithEmailAndPassword, } from '../../utils/firebase/firebase.utils';
 const defaultFormFeilds={
        
     email: '',                              
     password: '', 
 }
 const SignInForm = () => {
+    const dispatch=useDispatch();
     const [formFields,setFormFields]=useState(defaultFormFeilds);
     const {email,password}=formFields;
     // const {setCurrentUser}=useContext(UserContext);
@@ -18,7 +21,8 @@ const SignInForm = () => {
         setFormFields({...formFields,[name]:value});
     }
     const signinWithGoogle= async()=>{ 
-        await signInWithGooglePopup();
+        // await signInWithGooglePopup();
+        dispatch(googleSignInStart());
         // setCurrentUser(user);
         // console.log(response);
         
@@ -29,7 +33,8 @@ const SignInForm = () => {
     const handleSubmit= async (event)=>{
         event.preventDefault();
         try{
-       await signInAuthUserWithEmailAndPassword(email,password);
+            dispatch(emailSignInStart(email,password));
+    //    await signInAuthUserWithEmailAndPassword(email,password);
         // setCurrentUser(user);
     //    console.log(response);   
 resetFormFields();
